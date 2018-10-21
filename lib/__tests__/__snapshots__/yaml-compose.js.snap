@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`build should handle files without includes 1`] = `
+"image: alpine:latest
+
+variables:
+  POSTGRES_USER: root
+  POSTGRES_PASSWORD: secure_password
+
+stages:
+  - build
+  - test
+  - production
+
+production:
+  environment:
+    url: https://domain.com
+"
+`;
+
+exports[`build should include multiple file 1`] = `
+"image: 'alpine:latest'
+variables:
+  POSTGRES_USER: user
+  POSTGRES_PASSWORD: testing_password
+  POSTGRES_DB: $CI_ENVIRONMENT_SLUG
+stages:
+  - build
+  - test
+  - production
+production:
+  environment:
+    url: 'https://$CI_PROJECT_PATH_SLUG.$AUTO_DEVOPS_DOMAIN'
+    name: production
+  stage: production
+  script:
+    - install_dependencies
+    - deploy
+  only:
+    - master
+"
+`;
+
+exports[`build should include single file 1`] = `
+"image: 'alpine:latest'
+variables:
+  POSTGRES_USER: user
+  POSTGRES_PASSWORD: testing_password
+  POSTGRES_DB: $CI_ENVIRONMENT_SLUG
+stages:
+  - build
+  - test
+  - production
+production:
+  environment:
+    url: 'https://$CI_PROJECT_PATH_SLUG.$AUTO_DEVOPS_DOMAIN'
+    name: production
+  stage: production
+  script:
+    - install_dependencies
+    - deploy
+  only:
+    - master
+"
+`;

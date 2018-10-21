@@ -1,0 +1,42 @@
+{
+  "name": "yaml-compose",
+  "version": "0.0.0-semantic-release",
+  "description": "Gitlab influenced way of composing yaml files by using include keyword",
+  "main": "lib/yaml-compose.js",
+  "bin": "./cli",
+  "scripts": {
+    "precommit": "npm test",
+    "commit": "git-cz",
+    "test": "jest --coverage",
+    "posttest": "standard"
+  },
+  "keywords": [
+    "yaml",
+    "includes",
+    "merge"
+  ],
+  "author": "herrmannplatz <rene@herrmannplatz.de>",
+  "license": "MIT",
+  "dependencies": {
+    "deepmerge": "^2.2.1",
+    "js-yaml": "^3.12.0",
+    "meow": "^5.0.0"
+  },
+  "devDependencies": {
+    "commitizen": "3.0.1",
+    "cz-conventional-changelog": "2.1.0",
+    "husky": "1.0.1",
+    "jest": "23.4.2",
+    "semantic-release": "15.9.17",
+    "standard": "12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herrmannplatz/yaml-compose.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
