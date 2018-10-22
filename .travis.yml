@@ -7,7 +7,7 @@ cache:
     - "node_modules"
 
 after_success:
-  - npx run semantic-release
+  - npx semantic-release
 
 branches:
   only:
