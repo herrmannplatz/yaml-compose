@@ -24,15 +24,15 @@ if (!source) {
   process.exit(1)
 }
 
-try {
-  const yaml = build(source)
+build(source)
+  .then(yaml => {
+    if (distDir && !fs.existsSync(distDir)) {
+      fs.mkdirSync(distDir)
+    }
 
-  if (distDir && !fs.existsSync(distDir)) {
-    fs.mkdirSync(distDir)
-  }
-
-  fs.writeFileSync(path.join(process.cwd(), distDir, path.basename(source)), yaml)
-} catch (err) {
-  console.log('Failed to compose YAML file', err.message)
-  process.exit(1)
-}
+    fs.writeFileSync(path.join(process.cwd(), distDir, path.basename(source)), yaml)
+  })
+  .catch(err => {
+    console.log('Failed to compose YAML file', err.message)
+    process.exit(1)
+  })
