@@ -4,7 +4,7 @@
 
 > Gitlab influenced way of composing yaml files by using the `include` keyword
 
-## Usage
+## Usage via CLI
 
 Install package globally.
 ```
@@ -38,3 +38,19 @@ Alternativly you can also use npx and not install it globally.
 ```
 $ npx yaml-compose source.yaml -o dist
 ```
+
+## Usage as a module
+
+Example:
+```
+const { build: yamlCompose } = require('yaml-compose')
+const yaml = await build('source.yml' )
+```
+
+The build function has two arguments `build(sourceFile, options)`:
+-`sourceFile`: The path to the source file
+- `options`: An options object with two recognized properties:
+    - `getFile`: An async function used to read yaml files (i.e. the original source and all included files)  
+      Defaults to `src => fs.readFileSync(src, 'utf-8')`
+    - `resolvePath`: Function used to resolve the relative path given for includes in the source file.   
+      Defaults to `(sourcePath, includePath) => path.resolve(path.dirname(sourcePath), includePath)`  
